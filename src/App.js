@@ -16,6 +16,8 @@ import ProductDetail from "./components/ProductDetail";
 import Navbar from "../src/components/navbar";
 import Profile from "../src/components/profiles";
 
+import Cart from "./components/Cart";
+
 class App extends Component {
   componentDidMount = async () => {
     await this.props.getAllProducts();
@@ -32,9 +34,12 @@ class App extends Component {
             <Route exact path="/Profile" component={Profile} />
             <Route exact path="/products" component={ProductList} />
             <Route path="/products/:productID" component={ProductDetail} />
+            <Route path="/cart" component={Cart} />
+
             <Redirect to="/products" />
           </Switch>
         </div>
+        //create footer here
       </div>
     );
   }
