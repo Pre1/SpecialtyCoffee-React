@@ -49,8 +49,14 @@ const formatTimeS = ts => {
 
 class Profile extends Component {
   async componentDidMount() {
+    await this.props.checkForExpiredToken();
     await this.props.getUserOrders();
     await this.props.getProfileDetail();
+
+    if (!this.props.user) {
+      // this.props.this.props.history.push("/not-found/")
+      this.props.history.push("/login");
+    }
   }
 
   async componentDidUpdate(prevProps, prevState) {
@@ -199,7 +205,8 @@ class Profile extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     getUserOrders: () => dispatch(actionCreators.getUserOrders()),
-    getProfileDetail: () => dispatch(actionCreators.fetchProfileDetail())
+    getProfileDetail: () => dispatch(actionCreators.fetchProfileDetail()),
+    checkForExpiredToken: () => dispatch(actionCreators.checkForExpiredToken())
   };
 };
 const mapStateToProps = state => ({
