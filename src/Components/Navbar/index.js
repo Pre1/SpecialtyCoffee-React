@@ -15,6 +15,14 @@ import {
 
 class Navbar extends Component {
   render() {
+    if (this.props.userOrderStatusCart) {
+      let order_products_count = this.props.userOrderStatusCart
+        .order_products_count;
+      console.log(
+        "TCL: Navbar -> render -> order_products_count",
+        order_products_count
+      );
+    }
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         {/*################ Brand Name & Icon ################*/}
@@ -38,7 +46,7 @@ class Navbar extends Component {
           {this.props.user && (
             <Link to="/cart" style={{ textDecoration: "none" }}>
               <span
-                class="badge badge-pill badge-danger"
+                className="badge badge-pill badge-danger"
                 style={{
                   position: "relative",
                   top: -5,

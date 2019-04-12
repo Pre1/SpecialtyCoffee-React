@@ -139,21 +139,21 @@ class Cart extends Component {
                     </th>
 
                     <td className="text-center">
-                      <Link to="/profile">
-                        <button
-                          className="btn btn-danger"
-                          style={{ color: "#FFF", backgroundColor: "#fe687b" }}
-                          onClick={() =>
-                            this.handleCheckout(this.props.userCart.id)
-                          }
-                        >
-                          <FontAwesomeIcon
-                            icon={faMoneyBill}
-                            style={{ color: "#FFF" }}
-                          />{" "}
-                          Checkout
-                        </button>
-                      </Link>
+                      {/* <Link to="/profile"> */}
+                      <button
+                        className="btn btn-danger"
+                        style={{ color: "#FFF", backgroundColor: "#fe687b" }}
+                        onClick={() =>
+                          this.handleCheckout(this.props.userCart.id)
+                        }
+                      >
+                        <FontAwesomeIcon
+                          icon={faMoneyBill}
+                          style={{ color: "#FFF" }}
+                        />{" "}
+                        Checkout
+                      </button>
+                      {/* </Link> */}
                     </td>
                   </tr>
                 </tbody>

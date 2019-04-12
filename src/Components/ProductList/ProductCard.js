@@ -7,12 +7,14 @@ import { connect } from "react-redux";
 class ProductsCards extends Component {
   addProduct = async prodID => {
     let order = this.props.userOrderStatusCart;
+    console.log("TCL: ProductsCards -> order", order);
     if (order) {
       await this.props.addProductToCart({
         order: order.id,
         product: prodID,
         quantity: 1
       });
+      this.props.getUserCartOrder(order);
     }
   };
   render() {
@@ -70,7 +72,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getProduct: prodID => dispatch(actionCreators.getProductDetail(prodID)),
     addProductToCart: product =>
-      dispatch(actionCreators.addProductToCart(product))
+      dispatch(actionCreators.addProductToCart(product)),
+    getUserCartOrder: order => dispatch(actionCreators.getUserCartOrder(order))
   };
 };
 

@@ -49,10 +49,17 @@ export const orderCheckout = (orderID, orderStatus) => {
   console.log("[hi from orderCheckout] => ", orderID, orderStatus);
   return async dispatch => {
     try {
-      await instance.put(`/orders/update/${orderID}`, orderStatus);
+      let response = await instance.put(
+        `/orders/update/${orderID}`,
+        orderStatus
+      );
       dispatch({
         type: actionTypes.ORDER_CHECKOUT
       });
+
+      let checkout = response.data;
+
+      window.location.href = checkout.payment_url;
     } catch (error) {
       console.error(error);
     }
