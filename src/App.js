@@ -22,6 +22,8 @@ import RegistrationForm from "./Components/Profile/RegistrationForm";
 import Cart from "./Components/Cart";
 import LoginForm from "./Components/Profile/LoginForm";
 
+import PrivateRoute from "../src/Components/PrivateRoute";
+
 class App extends Component {
   state = {
     status: 1,
@@ -29,8 +31,8 @@ class App extends Component {
   };
 
   componentDidMount = async () => {
-    await this.props.getAllProducts();
     await this.props.checkForExpiredToken();
+    await this.props.getAllProducts();
 
     if (this.props.user) {
       await this.props.getUserOrders();
@@ -58,10 +60,8 @@ class App extends Component {
         </div>
         <div className="container-fluid my-4">
           <Switch>
-            {this.props.user && (
-              <Route exact path="/profile" component={Profile} />
-            )}
-
+            <Route path="/profile" component={Profile} />
+            {/* <PrivateRoute path="/profile" component={Profile} /> */}
             {this.props.user && (
               <Route
                 exact
